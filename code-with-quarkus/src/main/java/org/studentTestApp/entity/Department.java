@@ -12,9 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Teacher {
+public class Department {
     @Id
-    private int teacherId;
-    private String teacherName;
-
+    private int depId;
+    private String depName;
+    private String depLocation;
 }

@@ -1,30 +1,49 @@
 package org.studentTestApp.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Student {
     @Id
     private long studentId;
     private String studentName;
-    private int studentAge;
 
-    @ManyToOne
-    @JoinColumn(name = "module_id")
-    Module module;
+    @Column(name = "studentNic")
+    private int nic;
 
-    public Student(long studentId, String studentName, int studentAge) {
+    @Column(name = "studentEmail")
+    private String email;
+
+
+    @ManyToMany
+//    @JoinTable(
+//            name = "student_enrollment",
+//            joinColumns = @JoinColumn(name = "studentId"),
+//            inverseJoinColumns = @JoinColumn(name = "moduleId")
+//    )
+    private Set<Module> modules = new HashSet<>();
+
+    public Student(long studentId, String studentName, int nic, String email) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.nic = nic;
+        this.email = email;
     }
 
+/*    public Student(long studentId, String studentName, int nic, String email, long moduleID) {
+        this.studentId=studentId;
+        this.studentName=studentName;
+        this.nic=nic;
+        this.email=email;
+        this.
+    }*/
 }

@@ -32,18 +32,18 @@ public class ModuleController {
     public List<ModuleDto> getAllModule(){
         return moduleService.getAllModule();
     }
-    @GET
-    @Path("/getStudentsByModule{moduleId}")
-    public Response getStudentsByModule(@PathParam("moduleId") Long moduleId) {
-        try {
-            Set<StudentDto> students = moduleService.getStudentsByModuleId(moduleId);
-            return Response.ok(students).build();
-        } catch (IllegalArgumentException e) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity(e.getMessage())
-                    .build();
-        }
-    }
+//    @GET
+//    @Path("/getStudentsByModule{moduleId}")
+//    public Response getStudentsByModule(@PathParam("moduleId") Long moduleId) {
+//        try {
+//            Set<StudentDto> students = moduleService.getStudentsByModuleId(moduleId);
+//            return Response.ok(students).build();
+//        } catch (IllegalArgumentException e) {
+//            return Response.status(Response.Status.NOT_FOUND)
+//                    .entity(e.getMessage())
+//                    .build();
+//        }
+//    }
 
     @DELETE
     @Path("{id}")

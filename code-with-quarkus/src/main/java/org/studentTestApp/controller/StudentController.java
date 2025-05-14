@@ -4,6 +4,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.studentTestApp.dto.StudentDto;
+import org.studentTestApp.dto.StudentModuleDto;
+import org.studentTestApp.dto.StudentRequest;
 import org.studentTestApp.entity.Student;
 import org.studentTestApp.service.StudentService;
 
@@ -40,7 +42,8 @@ public List<StudentDto> getAllStudents() {
     @Path("/save")
     public Response createStudent(StudentDto studentDto) {
         studentService.createStudent(studentDto);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.OK).entity(studentDto).build();
+
     }
 
     @DELETE
@@ -49,5 +52,11 @@ public List<StudentDto> getAllStudents() {
     StudentDto studentDto = studentService.deleteStudentById(id);
         return Response.status(Response.Status.OK).entity(studentDto).build();
 
+    }
+    @POST
+    @Path("/studentRegModules")
+    public Response saveRequest(StudentRequest studentRequest){
+    StudentRequest studentRequest1=studentService.studentRegModules(studentRequest);
+        return Response.ok(studentRequest1).status(Response.Status.OK).entity(studentRequest).build();
     }
 }

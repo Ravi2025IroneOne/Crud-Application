@@ -1,17 +1,19 @@
 package org.studentTestApp.entity;
 
 import jakarta.persistence.*;
-import jakarta.ws.rs.GET;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Module {
@@ -21,10 +23,18 @@ public class Module {
     private int moduleLevel;
     private String moduleName;
 
-    @OneToMany(mappedBy = "module",cascade = CascadeType.ALL)
-    Set<Student> students;
 
+    @ManyToMany
+    @JoinTable(
+            name = "student_enrollment",
+            joinColumns = @JoinColumn(name = "moduleId"),
+            inverseJoinColumns = @JoinColumn(name = "studentId")
+    )
+    private Set<Student> students = new HashSet<>();
 
-    public Module(long moduleID, int moduleLevel, String moduleName) {
+    public Module(long moduleID, String moduleName, int moduleLevel) {
+        this.moduleID = moduleID;
+        this.moduleName = moduleName;
+        this.moduleLevel = moduleLevel;
     }
 }

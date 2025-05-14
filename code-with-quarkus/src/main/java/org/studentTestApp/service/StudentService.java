@@ -1,6 +1,8 @@
 package org.studentTestApp.service;
 
 import org.studentTestApp.dto.StudentDto;
+import org.studentTestApp.dto.StudentModuleDto;
+import org.studentTestApp.dto.StudentRequest;
 import org.studentTestApp.entity.Student;
 
 import java.util.List;
@@ -10,7 +12,10 @@ public interface StudentService{
 
     StudentDto deleteStudentById(long id);
 
-    void createStudent(StudentDto studentDto);
+    StudentDto createStudent(StudentDto studentDto);
 
     StudentDto getStudentById(long id);
+
+
+    StudentRequest studentRegModules(StudentRequest studentRequest);
 }

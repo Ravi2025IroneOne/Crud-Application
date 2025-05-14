@@ -1,19 +1,19 @@
 package org.studentTestApp.dto;
 
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 
-public class StudentDto {
+public class StudentRequest {
     private long studentId;
     private String studentName;
     private int nic;
     private String email;
+
+    private Set<Long> moduleIDs;
 }

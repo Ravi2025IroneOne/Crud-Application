@@ -12,7 +12,7 @@ public interface ModuleService {
 
     List<ModuleDto> getAllModule();
 
-    Set<StudentDto> getStudentsByModuleId(Long moduleId);
+//    Set<StudentDto> getStudentsByModuleId(Long moduleId);
 
     ModuleDto deleteModuleByID(long id);
 }

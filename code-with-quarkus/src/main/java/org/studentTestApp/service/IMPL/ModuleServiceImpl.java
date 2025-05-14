@@ -12,8 +12,7 @@ import org.studentTestApp.service.ModuleService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @ApplicationScoped
 public class ModuleServiceImpl implements ModuleService {
@@ -24,13 +23,13 @@ public class ModuleServiceImpl implements ModuleService {
         this.moduleRepo = moduleRepo;
     }
 
-
+@Transactional
     @Override
     public void addModule(ModuleDto moduleDto) {
         Module module = new Module(
                 moduleDto.getModuleID(),
-                moduleDto.getModuleLevel(),
-                moduleDto.getModuleName()
+                moduleDto.getModuleName(),
+                moduleDto.getModuleLevel()
         );
        moduleRepo.persist(module);
     }
@@ -55,20 +54,20 @@ public class ModuleServiceImpl implements ModuleService {
     }
     }
 
-    @Transactional
-    public Set<StudentDto> getStudentsByModuleId(Long moduleId) {
-        Module module = moduleRepo.findById(moduleId);
-        if (module == null) {
-            throw new IllegalArgumentException("Module with ID " + moduleId + " not found");
-        }
-        
-        return module.getStudents().stream()
-                .map(student -> new StudentDto(
-                        student.getStudentId(),
-                        student.getStudentName(),
-                        student.getStudentAge()))
-                .collect(Collectors.toSet());
-    }
+//    @Transactional
+//    public Set<StudentDto> getStudentsByModuleId(Long moduleId) {
+//        Module module = moduleRepo.findById(moduleId);
+//        if (module == null) {
+//            throw new IllegalArgumentException("Module with ID " + moduleId + " not found");
+//        }
+//
+//        return module.getStudents().stream()
+//                .map(student -> new StudentDto(
+//                        student.getStudentId(),
+//                        student.getStudentName(),
+//                        student.getStudentAge()))
+//                .collect(Collectors.toSet());
+//    }
 
     @Transactional
     @Override
